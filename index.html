@@ -1,148 +1,146 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <!-- Standard Meta -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <script src="assets/library/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/dist/semantic.min.css">
-  <script src="/dist/semantic.min.js"></script>
-  <style type="text/css">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Password Protected</title>
 
-    .hidden.menu {
-      display: none;
-    }
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex, nofollow">
 
-    .masthead.segment {
-      min-height: 100vh;
-      padding: 1em 0em;
-    }
-    .masthead .logo.item img {
-      margin-right: 1em;
-    }
-    .masthead .ui.menu .ui.button {
-      margin-left: 0.5em;
-    }
-    .masthead h1.ui.header {
-      margin-top: 3em;
-      margin-bottom: 0em;
-      font-size: 4em;
-      font-weight: normal;
-    }
-    .masthead h2 {
-      font-size: 1.7em;
-      font-weight: normal;
-    }
+        <style>
+            *,
+            *:after,
+            *:before {
+                box-sizing: border-box;
+            }
+            body,
+            html {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+                font-weight: 300;
+                font-size: 16px;
+                background: #f2f2f2;
+                color: #2D3737;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100%;
+            }
 
-    .ui.vertical.stripe {
-      padding: 8em 0em;
-    }
-    .ui.vertical.stripe h3 {
-      font-size: 2em;
-    }
-    .ui.vertical.stripe .button + h3,
-    .ui.vertical.stripe p + h3 {
-      margin-top: 3em;
-    }
-    .ui.vertical.stripe .floated.image {
-      clear: both;
-    }
-    .ui.vertical.stripe p {
-      font-size: 1.33em;
-    }
-    .ui.vertical.stripe .horizontal.divider {
-      margin: 3em 0em;
-    }
+            .protected {
+                background: #fff;
+                -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
+                box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
+                border-radius: 3px;
+                min-width: 500px;
 
-    .quote.stripe.segment {
-      padding: 0em;
-    }
-    .quote.stripe.segment .grid .column {
-      padding-top: 5em;
-      padding-bottom: 5em;
-    }
+            }
+            .protected__content {
+                padding: 24px 28px;
+            }
+            .protected__content__heading {
+                font-size: 16px;
+                font-weight: 500;
+                margin: 0 0 12px;
+                line-height: 1;
+            }
+            .protected__alert {
+                display: none;
+                border-bottom: 1px solid transparent;
+                border-radius: 3px 3px 0 0;
+                padding: 12px 14px;
+                color: #a94442;
+                background-color: #f2dede;
+                border-color: #ebccd1;
+            }
+            .protected__content__input {
+                display: block;
+                border: solid 1px #ccc;
+                padding: 12px 14px;
+                -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
+                box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
+                font-size: 16px;
+                width: 100%;
+                border-radius: 3px;
 
-    .footer.segment {
-      padding: 5em 0em;
-    }
+                margin-bottom: 12px;
+            }
+            .protected__content__input:focus {
+                outline: none;
+                border-color: #228843;
+            }
+            .protected__content__btn {
+                background-color: #228843;
+                border-radius: 3px;
+                cursor: pointer;
+                border: none;
+                color: #fff;
+                padding: 12px 14px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+                font-weight: 500;
+                font-size: 16px;
 
-    .secondary.pointing.menu .toc.item {
-      display: none;
-    }
+            }
+            .protected__content__btn:hover {
+                background-color: #1C6D36;
+            }
 
-    @media only screen and (max-width: 700px) {
-      .ui.fixed.menu {
-        display: none !important;
-      }
-      .secondary.pointing.menu .item,
-      .secondary.pointing.menu .menu {
-        display: none;
-      }
-      .secondary.pointing.menu .toc.item {
-        display: block;
-      }
-      .masthead.segment {
-        min-height: 350px;
-      }
-      .masthead h1.ui.header {
-        font-size: 2em;
-        margin-top: 1.5em;
-      }
-      .masthead h2 {
-        margin-top: 0.5em;
-        font-size: 1.5em;
-      }
-    }
+        </style>
 
+    </head>
 
-  </style>
-  <!-- Site Properties -->
-  <title>Hernieuwers 2022-2023</title>
+    <body>
 
+        <div class="protected">
+            <div class="protected__alert" data-id="alert">You entered the wrong password</div>
+            <div class="protected__content">
+                <h1 class="protected__content__heading">You need a password to continue</h1>
+                <input class="protected__content__input" data-id="password" type="password" placeholder="password"/>
+                <button data-id="button" type="button" class="protected__content__btn">Continue</button>
+            </div>
+        </div>
 
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.6.0/sha1.min.js"></script>
+        <script type="text/javascript">
+            "use strict"
+            var button = document.querySelectorAll('[data-id="button"]')
+            var password = document.querySelectorAll('[data-id="password"]')
 
-  <div class="pusher">
-    <div class="ui inverted vertical masthead center aligned segment">
-      <div class="ui text container">
-        <h1 class="ui inverted header">
-          <p id="countdown"></p>
-        </h1>
-        <h2>Time to reveal the truth</h2>
-        <!-- <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div> -->
-      </div>
-    </div>
-</div>
+            function login(secret) {
+                var hash = sha1(secret)
+                var url = hash + "/index.html"
+                var alert = document.querySelectorAll('[data-id="alert"]')
 
-</body>
-<script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Sep 2, 2022 20:00:00").getTime();
-    
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-    
-      // Get today's date and time
-      var now = new Date().getTime();
-    
-      // Find the distance between now and the count down date
-      var distance = countDownDate - now;
-    
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-      // Display the result in the element with id="demo"
-      document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-      + minutes + "m " + seconds + "s ";
-    
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("countdown").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-    </script>
+                var request = new XMLHttpRequest()
+                request.open('GET', url, true)
+
+                request.onload = function () {
+                    if (request.status >= 200 && request.status < 400) {
+                        window.location = url
+                    } else {
+                        parent.location.hash = hash
+                        alert[0].style.display = 'block'
+                        password[0].setAttribute('placeholder', 'Incorrect password')
+                        password[0].value = ''
+                    }
+                }
+                request.onerror = function () {
+                    parent.location.hash = hash
+                    alert[0].style.display = 'block'
+                    password[0].setAttribute('placeholder', 'Incorrect password')
+                    password[0].value = ''
+                }
+                request.send()
+            }
+
+            button[0].addEventListener("click", function () {
+                login(password[0].value)
+            })
+
+            document.onkeydown = function (e) {
+                e = e || window.event
+                if (e.keyCode == 13) {
+                    login(password[0].value)
+                }
+            }
+        </script>
+    </body>
 </html>
